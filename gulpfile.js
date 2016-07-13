@@ -1,15 +1,19 @@
 // generated on 2016-07-13 using generator-webapp 2.1.0
 const gulp = require('gulp');
+const concat = require('gulp-concat');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync');
 const del = require('del');
 const wiredep = require('wiredep').stream;
+const cssmin = require('gulp-cssmin');
+const rename = require('gulp-rename');
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
 gulp.task('styles', () => {
   return gulp.src('app/styles/*.css')
+    .pipe(concat('app.full.css'))
     .pipe($.sourcemaps.init())
     .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
     .pipe($.sourcemaps.write())
